@@ -33,27 +33,61 @@ public class SiteDaoImpl implements SiteDao {
 
     @Override
     public List<Site> getAll() {
-        return null;
+        String sql = "SELECT * FROM sites WHERE deleted = 'FALSE'";
+        try(Connection con = sql2o.open()){
+           return con.createQuery(sql)
+                    .executeAndFetch(Site.class);
+        }
     }
 
 
     @Override
     public Site findById(int id) {
-        return null;
+        String sql = "SELECT * FROM sites WHERE id = :id and deleted = 'FALSE'";
+        try(Connection con = sql2o.open()){
+            return con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Site.class);
+        }
+
     }
 
     @Override
-    public void update(int id, String name, String description, int engineerId, String updated) {
-
+    public void update(int id, String name, String description, int engineerId) {
+        String sql = "UPDATE sites SET (name, description, engineer_id, updated) = (:name, :description, :engineerId, now()) WHERE id=:id";
+        try(Connection con = sql2o.open()){
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .addParameter("name", name)
+                    .addParameter("description", description)
+                    .addParameter("engineerId", engineerId)
+                    .executeUpdate();
+        }catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
     }
 
     @Override
-    public void deleteById(int id, String deleted) {
-
+    public void deleteById(int id) {
+        String sql = "UPDATE sites SET deleted='TRUE' where id = :id";
+        try(Connection con = sql2o.open()){
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
     }
 
     @Override
     public void clearAllSites(String deleted) {
+        String sql = "UPDATE sites SET deleted='TRUE'";
+        try(Connection con = sql2o.open()){
+            con.createQuery(sql)
+                    .executeUpdate();
+        }catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
 
     }
 }

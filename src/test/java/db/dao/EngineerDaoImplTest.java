@@ -33,13 +33,13 @@ class EngineerDaoImplTest {
         siteDao = new SiteDaoImpl(sql2o);
         conn = sql2o.open(); // open connection once before this test file is run
     }
+
     @AfterEach
     public void tearDown() throws Exception { //I have changed
         System.out.println("clearing database");
 //        engineerDao.clearAllEngineers(); // clear all tasks after every test
         clearEngineersDB();
         clearSitesDB();
-
     }
 
     @AfterAll // changed to @AfterClass (run once after all tests in this file completed)
@@ -48,13 +48,14 @@ class EngineerDaoImplTest {
         System.out.println("connection closed");
     }
 
-
     @Test
     public void addingEngineerSetsId() throws Exception{
         Engineer engineer = setNewEngineer();
         engineerDao.add(engineer);
         int engineerId = engineer.getId();
-        assertEquals(engineerId, engineer.getId());
+        Engineer foundEngineer = engineerDao.findById(engineerId);
+        System.out.println(foundEngineer);
+        assertEquals(foundEngineer.getId(), engineer.getId());
     }
 
     @Test
@@ -96,7 +97,7 @@ class EngineerDaoImplTest {
     }
 
     @Test
-    void weCanGetAllEngineers() {
+    void weCanGetAllEngineers() throws Exception{
         Engineer engineer = setNewEngineer();
         engineerDao.add(engineer);
         Engineer anotherEngineer = new Engineer("Jane", "Doe", "ENG00", "0712345678", "jane.doe@engineering.com");
@@ -106,7 +107,7 @@ class EngineerDaoImplTest {
     }
 
     @Test
-    void deleteByIdDeletesCorrectEngineer() {
+    void deleteByIdDeletesCorrectEngineer() throws Exception {
         Engineer engineer = setNewEngineer();
         engineerDao.add(engineer);
         engineerDao.deleteById(engineer.getId());
@@ -114,7 +115,7 @@ class EngineerDaoImplTest {
     }
 
     @Test
-    void clearAllEngineersSetPartialDelete() {
+    void clearAllEngineersSetPartialDelete() throws Exception{
         Engineer engineer = setNewEngineer();
         engineerDao.add(engineer);
         Engineer anotherEngineer = new Engineer("Jane", "Doe", "ENG00", "0712345678", "jane.doe@engineering.com");
@@ -125,7 +126,7 @@ class EngineerDaoImplTest {
     }
 
     @Test
-    void getAllSitesByEngineerReturnsAllSitesCorrectly() {
+    void getAllSitesByEngineerReturnsAllSitesCorrectly() throws Exception {
         Engineer engineer = setNewEngineer();
         engineerDao.add(engineer);
         int engineerId = engineer.getId();
@@ -138,7 +139,7 @@ class EngineerDaoImplTest {
     }
 
     @Test
-    void deleteAllSitesByEngineer() {
+    void deleteAllSitesByEngineer() throws Exception{
         Engineer engineer = setNewEngineer();
         engineerDao.add(engineer);
         int engineerId = engineer.getId();
