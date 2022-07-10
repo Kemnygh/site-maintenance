@@ -18,7 +18,7 @@ public interface EngineerDao {
     Engineer findById(int id);
 
     // UPDATE
-    void update(int id, String firstName, String lastName, String engNo, String phoneNo, String email, Timestamp updated);
+    void update(int id, String firstName, String lastName, String engNo, String phoneNo, String email);
 
     // DELETE
     void deleteById(int id);

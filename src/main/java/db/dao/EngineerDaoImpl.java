@@ -42,14 +42,14 @@ public class EngineerDaoImpl implements EngineerDao{
     @Override
     public Engineer findById(int id) {
         try(Connection con = sql2o.open()){
-            return con.createQuery("SELECT * FROM engineers WHERE id = :id")
+            return con.createQuery("SELECT * FROM engineers WHERE id = :id and deleted = 'FALSE'")
                     .addParameter("id", id) //key/value pair, key must match above
                     .executeAndFetchFirst(Engineer.class); //fetch an individual item
         }
     }
 
     @Override
-    public void update(int id, String firstName, String lastName, String engNo, String phoneNo, String email, Timestamp updated){
+    public void update(int id, String firstName, String lastName, String engNo, String phoneNo, String email){
         String sql = "UPDATE engineers SET (first_name, last_name, eng_no, phone_no, email, updated) = (:firstName, :lastName, :engNo, :phoneNo, :email, now()) WHERE id=:id";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
@@ -80,34 +80,35 @@ public class EngineerDaoImpl implements EngineerDao{
 
     @Override
     public void clearAllEngineers() {
-//        String sql = "UPDATE engineers SET deleted='TRUE'";
-        String sql = "DELETE * FROM engineers";
+        String sql = "UPDATE engineers SET deleted='TRUE'";
+//        String sql = "DELETE FROM engineers";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .executeUpdate();
         } catch (Sql2oException ex){
             System.out.println(ex);
+        }
+    }
+
+
+    @Override
+    public List<Site> getAllSitesByEngineer(int engineerId) {
+        try(Connection con = sql2o.open()){
+            return con.createQuery("SELECT * FROM sites WHERE engineer_id = :engineerId and deleted = 'FALSE'")
+                    .addParameter("engineerId", engineerId)
+                    .executeAndFetch(Site.class);
         }
     }
 
     @Override
     public void deleteAllSitesByEngineer(int engineerId) {
-//        String sql = "UPDATE sites SET deleted='TRUE' where engineer_id = :engineerId";
-        String sql = "DELETE * FROM sites where engineer_id = engineer_id";
+        String sql = "UPDATE sites SET deleted='TRUE' where engineer_id = :engineerId";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
+                    .addParameter("engineerId", engineerId)
                     .executeUpdate();
         } catch (Sql2oException ex){
             System.out.println(ex);
-        }
-    }
-
-    @Override
-    public List<Site> getAllSitesByEngineer(int engineerId) {
-        try(Connection con = sql2o.open()){
-            return con.createQuery("SELECT * FROM sites WHERE engineer_id = :engineerId")
-                    .addParameter("engineerId", engineerId)
-                    .executeAndFetch(Site.class);
         }
     }
 }
