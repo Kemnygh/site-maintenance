@@ -1,0 +1,95 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+body{
+    height: 100vh;
+
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.card-item{
+    background-color: #F0F1C9;
+}
+
+.card-message{
+    position: relative;
+}
+
+.card-body{
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.card-img{
+   position: relative;
+}
+
+.card-title{
+    font-weight: bold;
+    color: grey;
+}
+
+.img-fluid{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    max-height: 200px;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.add-buttons{
+    background-color: #212121;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+[placeholder]:focus::-webkit-input-placeholder {
+    transition: text-indent 0.4s 0.4s ease;
+    text-indent: -100%;
+    opacity: 1;
+}
+
+input::placeholder{
+
+    font-size: 15px;
+}
+
+.vertical-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.footer-con{
+    padding: 10px 10px 0px 10px;
+    margin: auto;
+    background: white;
+}
+
+.nav-footer {
+    display: flex;
+    list-style: none;
+    padding-bottom: 20px;
+}

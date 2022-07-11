@@ -1,0 +1,148 @@
+{{#block "header"}}
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{{#block "title"}}Site Management{{/block}}</title>
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    </head>
+    <body>
+{{/block}}
+
+<div class="container main-block mb-3" style="padding-left: 0px; padding-right: 0px;">
+    <div class="fixed-top">
+        <nav class="container navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand text-success" href="/" style="font-family: 'Poppins', sans-serif;">Site Management Panel</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon text-white"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active text-muted" aria-current="page" href="/">Home <i class="bi bi-house-fill"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!--begin main template-->
+    <div class="card border-light mt-3" style="height: 400px;">
+        <div class="row g-0 card-item"  style="height: 400px;">
+            <div class="col-md-6 mt-3 card-message">
+                <div class="card-body mt-3">
+                    <h5 class="card-title">Site Management Panel</h5>
+                    <p class="card-text"><small class="text-muted">Engineer and site maintenance from a single point</small></p>
+                </div>
+            </div>
+            <div class="col-md-6 mt-3">
+                <img src="/images/eng.jpg" class="img-fluid rounded-start" alt="..." style="">
+            </div>
+        </div>
+    </div>
+    <div class="add-buttons" style="padding-left: 10px; padding-right: 10px;">
+        <div class="">
+            <h5 class="text-white mb-3">Add Engineers and Sites:</h5>
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group me-2" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-success btn-sm">+ Engineer</button>
+                </div>
+                <div class="btn-group me-2" role="group" aria-label="Second group">
+                    <button type="button" class="btn btn-success btn-sm">+ Site</button>
+                </div>
+                <div class="btn-group me-2" role="group" aria-label="third group">
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search Engineer/Site name" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <button type="submit" class="btn btn-success" id="button-addon2"><i class="bi bi-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{#block "content"}}
+    {{/block}}
+    <!-- Deleting modal --------------------------------------->
+    <!-- Delete all Departments -->
+    <div class="modal fade" id="staticDeleteAllDepartments" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Delete All Departments</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <i class="bi bi-shield-fill-exclamation text-danger"></i>
+                    Confirm you are about to delete all departments!!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='/delete/departments/all';">Delete</button>
+                    <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Delete all Positions -->
+    <div class="modal fade" id="staticDeleteAllPositions" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Delete All Positions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <i class="bi bi-shield-fill-exclamation text-danger"></i>
+                    Confirm you are about to delete all Positions!!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='/delete/positions/all';">Delete</button>
+                    <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Delete all items -->
+    <div class="modal fade" id="staticDeleteAll" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Delete All Items</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <i class="bi bi-shield-fill-exclamation text-danger"></i>
+                    Confirm you are about to delete all Employees, Positions & Departments!!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='/delete/all';">Delete</button>
+                    <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--begin footer-->
+{{#block "footer"}}
+    <div class="footer">
+        <div class="footer-con container">
+            <hr>
+            <nav class="nav-footer ">
+                <li class="" id="copyRight">Clear All Items  <a class="text-danger" style="font-weight: bold;" href="" data-bs-toggle="modal" data-bs-target="#staticDeleteAll"><i class="bi bi-x-circle-fill"></i></a></li>
+                <li class="ms-auto" id="copyRight">@Copyright 2022 <strong>Site Management Panel</strong></li>
+            </nav>
+        </div>
+    </div>
+    </body>
+    </html>
+{{/block}}
