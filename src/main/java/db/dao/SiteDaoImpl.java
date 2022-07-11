@@ -80,7 +80,7 @@ public class SiteDaoImpl implements SiteDao {
     }
 
     @Override
-    public void clearAllSites(String deleted) {
+    public void clearAllSites() {
         String sql = "UPDATE sites SET deleted='TRUE'";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)

@@ -21,7 +21,7 @@ public interface SiteDao {
 
     // DELETE
     void deleteById(int id);
-    void clearAllSites(String deleted);
+    void clearAllSites();
 
     List<Site> search(String site);
 }

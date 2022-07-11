@@ -103,8 +103,7 @@ class SiteDaoImplTest {
     void clearAllSitesMarksAllSitesAsDeleted() throws Exception{
         Site site = setNewSite();
         siteDao.add(site);
-        int siteId = site.getId();
-        siteDao.deleteById(siteId);
+        siteDao.clearAllSites();
         List <Site> foundSites = siteDao.getAll();
         assertEquals(0, foundSites.size());
     }
