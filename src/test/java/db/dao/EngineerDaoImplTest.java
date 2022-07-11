@@ -152,6 +152,16 @@ class EngineerDaoImplTest {
         assertEquals(0, allSitesByEngineer.size());
     }
 
+    @Test
+    public void engineerSearchWorksCorrectly() throws Exception{
+        Engineer engineer = setNewEngineer();
+        engineerDao.add(engineer);
+        Engineer anotherEngineer = new Engineer("Jane", "Doe", "ENG00", "0712345678", "jane.doe@engineering.com");
+        engineerDao.add(anotherEngineer);
+        List <Engineer> foundEngineers = engineerDao.search("doe");
+        assertEquals(2, foundEngineers.size());
+    }
+
 
     // Support methods
     public Engineer setNewEngineer() { return new Engineer("John", "Doe", "ENG001", "0712345678", "jdoe@engineering.com");}

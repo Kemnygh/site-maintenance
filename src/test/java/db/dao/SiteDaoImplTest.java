@@ -131,6 +131,16 @@ class SiteDaoImplTest {
         assertEquals(dateFormat.format(siteUpdateDate), dateFormat.format(rightNow));
     }
 
+    @Test
+    public void siteSearchWorksCorrectly() throws Exception{
+        Site site = setNewSite();
+        siteDao.add(site);
+        Site anotherSite = new Site("Pili Site", "Second site init", 2);
+        siteDao.add(anotherSite);
+        List <Site> foundSites = siteDao.search("site");
+        assertEquals(2, foundSites.size());
+    }
+
     // Support methods
     public Site setNewSite() { return new Site("Kwanza Site", "First site init", 1);}
 

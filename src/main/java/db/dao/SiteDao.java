@@ -1,5 +1,6 @@
 package db.dao;
 
+import models.Engineer;
 import models.Site;
 
 import java.util.List;
@@ -21,4 +22,6 @@ public interface SiteDao {
     // DELETE
     void deleteById(int id);
     void clearAllSites(String deleted);
+
+    List<Site> search(String site);
 }

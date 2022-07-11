@@ -90,4 +90,14 @@ public class SiteDaoImpl implements SiteDao {
         }
 
     }
+
+    @Override
+    public List<Site> search(String site) {
+        String sql = "SELECT * FROM sites WHERE lower(name) like '%'||:site||'%'";
+        try(Connection con = sql2o.open()){
+            return con.createQuery(sql)
+                    .addParameter("site", site)
+                    .executeAndFetch(Site.class);
+        }
+    }
 }

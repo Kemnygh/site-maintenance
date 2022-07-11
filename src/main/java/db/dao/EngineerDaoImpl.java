@@ -111,4 +111,13 @@ public class EngineerDaoImpl implements EngineerDao{
             System.out.println(ex);
         }
     }
+    @Override
+    public List<Engineer> search(String engineer) {
+        String sql = "SELECT * FROM engineers WHERE (lower(first_name) like '%'||:engineer||'%' OR lower(last_name) like '%'||:engineer||'%')";
+        try(Connection con = sql2o.open()){
+            return con.createQuery(sql)
+                    .addParameter("engineer", engineer)
+                    .executeAndFetch(Engineer.class);
+        }
+    }
 }

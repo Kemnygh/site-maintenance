@@ -24,4 +24,6 @@ public interface EngineerDao {
     void deleteById(int id);
     void clearAllEngineers();
     void deleteAllSitesByEngineer(int engineerId);
+
+    List<Engineer> search(String engineer);
 }
