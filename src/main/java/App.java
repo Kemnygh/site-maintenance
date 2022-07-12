@@ -39,12 +39,20 @@ public class App {
             return gson.toJson(sites, Site.class);
         });
 
-        // get: show all sites and all engineers
-        get("/", (req, res) -> {
+        // get: show all engineers
+        get("/all-engineers", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Engineer> engineers = engineerDao.getAll();
             List<Site> sites = siteDao.getAll();
             model.put("engineers", engineers);
+            return new ModelAndView(model, "all-engineers.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        // get: show all sites
+        get("/", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Engineer> engineers = engineerDao.getAll();
+            List<Site> sites = siteDao.getAll();
             model.put("sites", sites);
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());

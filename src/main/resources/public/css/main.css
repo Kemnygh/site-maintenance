@@ -24,7 +24,7 @@ body{
 .card-body-layout{
     position: absolute;
     top: 50%;
-    left: 40%;
+    left: 20%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
@@ -36,6 +36,12 @@ body{
 .card-title-layout{
     font-weight: bold;
     color: grey;
+    font-size: 40px;
+}
+
+.card-text-layout{
+    letter-spacing: 3px;
+    font-family: Baloo;
 }
 
 .img-fluid{
