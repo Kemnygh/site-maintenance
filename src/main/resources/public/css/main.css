@@ -21,7 +21,7 @@ body{
     position: relative;
 }
 
-.card-body{
+.card-body-layout{
     position: absolute;
     top: 50%;
     left: 40%;
@@ -33,7 +33,7 @@ body{
    position: relative;
 }
 
-.card-title{
+.card-title-layout{
     font-weight: bold;
     color: grey;
 }
@@ -73,6 +73,41 @@ input::placeholder{
     margin-left: auto;
     margin-right: auto;
     width: 40%;;
+}
+
+.form-div{
+    margin: auto;
+    /*width: 35%;*/
+    background-color: #ffffff;
+    padding: 10px;
+    border: 1px solid #bdbdbd;
+    border-radius: 10px;
+}
+
+.form-div-site{
+    margin: auto;
+    width: 35%;
+    background-color: #ffffff;
+    padding: 10px;
+    border: 1px solid #bdbdbd;
+    border-radius: 10px;
+}
+
+.form-title{
+    display: block;
+    font-family:  'Poppins', sans-serif;
+    font-size: 39px;
+    color: #333333;
+    line-height: 1.2;
+    text-align: center;
+    padding-bottom: 30px;
+    padding-top: 20px;
+    font-weight: bold;
+}
+
+.form{
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .footer {
