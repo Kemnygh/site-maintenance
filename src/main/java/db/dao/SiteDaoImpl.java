@@ -18,7 +18,7 @@ public class SiteDaoImpl implements SiteDao {
 
     @Override
     public void add(Site site) {
-        String sql = "INSERT INTO sites (name, description, engineer_id, created) VALUES (:name, :description, :engineerId, :location, :locationId, now())"; //raw sql
+        String sql = "INSERT INTO sites (name, description, engineer_id, location, location_id, created) VALUES (:name, :description, :engineerId, :location, :location_id, now())"; //raw sql
         try(Connection con = sql2o.open()){ //try to open a connection
             int id = (int) con.createQuery(sql, true) //make a new variable
                     .bind(site) //map argument onto the query, so we can use information from it

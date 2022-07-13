@@ -1,10 +1,10 @@
 {{#partial "content"}}
     {{#if engineers}}
-        <h3 class="index-title">Engineers</h3>
+        <h3 class="index-title mt-3">Engineers</h3>
         <div class="table-div">
             <p><span style="color: grey;">Select engineer ID to see more details</span></p>
             <table class="table table-hover table-responsive table-sm">
-                <thead class="table-info text-center">
+                <thead class="table-danger text-center">
                 <tr>
                     <th scope="col">Engineer ID</th>
                     <th scope="col">First Name</th>
@@ -18,7 +18,7 @@
                 <tbody class="table-group-divider bg-light">
                 {{#each engineers }}
                     <tr class="text-center">
-                        <th scope="row"><a href="/employees/{{id}}">{{eng_no}}</a></th>
+                        <th scope="row"><a href="/engineers/{{id}}">{{eng_no}}</a></th>
                         <td>{{first_name}}</td>
                         <td>{{last_name}}</td>
                         <td>{{phone_no}}</td>
@@ -47,7 +47,7 @@
                     </tr>
                 {{/each}}
                 <tr>
-                    <td colspan="8">Delete All Employees  <a href="" data-bs-toggle="modal" data-bs-target="#staticDeleteAllEng"><i class="bi bi-trash-fill"></i></a></td>
+                    <td colspan="8">Delete All Engineers  <a href="" data-bs-toggle="modal" data-bs-target="#staticDeleteAllEng"><i class="bi bi-trash-fill"></i></a></td>
                 </tr>
                 </tbody>
             </table>

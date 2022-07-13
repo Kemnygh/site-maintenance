@@ -30,5 +30,5 @@ class SiteTest {
     }
 
     //Support Method
-    public Site setNewSite() { return new Site("Kwanza Site", "First site init", 1);}
+    public Site setNewSite() { return new Site("Kwanza Site", "First site init", 1, "Nairobi", "-1.292066, 36.821945");}
 }

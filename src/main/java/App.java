@@ -27,7 +27,6 @@ public class App {
         port(getHerokuAssignedPort());
         staticFileLocation("/public");
         String connectionString = "jdbc:postgresql://localhost:5432/site_maintenance";
-//        String connectionString = DbConfig.getDbUrl();
         Sql2o sql2o = new Sql2o(connectionString, "postgres", "root");
         EngineerDaoImpl engineerDao = new EngineerDaoImpl(sql2o);
         SiteDaoImpl siteDao = new SiteDaoImpl(sql2o);
@@ -101,9 +100,9 @@ public class App {
             model.put("engineers", allEngineers);
             String name = req.queryParams("name");
             String description = req.queryParams("description");
+            int engineerId = Integer.parseInt(req.queryParams("engineer_id"));
             String location = req.queryParams("location");
             String locationId = req.queryParams("location_id");
-            int engineerId = Integer.parseInt(req.queryParams("engineer_id"));
             Site newSite = new Site(name, description, engineerId, location, locationId);
             for(Site site : allSites){
                 if(site.getName().equals(name) ){
@@ -190,7 +189,7 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             int idOfEngineerToFind = Integer.parseInt(req.params("id")); //new
             Engineer foundEngineer = engineerDao.findById(idOfEngineerToFind);
-            model.put("department", foundEngineer);
+            model.put("engineer", foundEngineer);
             List<Site> allSitesByEngineer = engineerDao.getAllSitesByEngineer(idOfEngineerToFind);
             model.put("sites", allSitesByEngineer);
             model.put("engineers", engineerDao.getAll()); //refresh list of links for navbar
@@ -230,7 +229,7 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
-        get("/delete/engineers/all", (req, res) -> {
+        get("/engineers/delete/all", (req, res) -> {
             engineerDao.clearAllEngineers();
             res.redirect("/");
             return null;

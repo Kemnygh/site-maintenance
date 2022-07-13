@@ -3,7 +3,7 @@
         <br>
         <h3 class="index-title">Sites</h3>
         <hr>
-        <div class="row">
+        <div class="row sites-box">
         {{#each sites}}
             <div class="card col-md-3 mb-3 ms-2 me-2" style="max-width: 20rem; padding: 0">
                 <div class="card-header card-header-index">
@@ -13,10 +13,15 @@
                     <p class="card-text">{{description}}</p>
                 </div>
                 <div class="card-footer text-muted">
-                    <span class="card-date">Site Created: {{siteCreated}}</span>
+                    <span class="card-date" id="dateCreated">Created: {{created}}</span>
                     <a href="/site/{{id}}/edit" class="card-link" style="float: right;">Edit <i class="bi bi-pencil-square"></i></a>
                 </div>
             </div>
+            <script>
+                let str = {{created}}
+                        document.getElementById("dateCreated").innerHTML =  {{created}};
+
+            </script>
         {{/each}}
         </div>
     {{else}}

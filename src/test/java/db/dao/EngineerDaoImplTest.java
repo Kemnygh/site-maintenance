@@ -130,8 +130,8 @@ class EngineerDaoImplTest {
         Engineer engineer = setNewEngineer();
         engineerDao.add(engineer);
         int engineerId = engineer.getId();
-        Site site = new Site("Kwanza Site", "first site init", engineerId);
-        Site anotherSite = new Site("Pile Site", "second site init", engineerId);
+        Site site = new Site("Kwanza Site", "first site init", engineerId, "Nairobi", "-1.292066, 36.821945");
+        Site anotherSite = new Site("Pile Site", "second site init", engineerId, "Nairobi", "-1.292066, 36.821945");
         siteDao.add(site);
         siteDao.add(anotherSite);
         List<Site> allSitesByEngineer = engineerDao.getAllSitesByEngineer(engineerId);
@@ -143,8 +143,8 @@ class EngineerDaoImplTest {
         Engineer engineer = setNewEngineer();
         engineerDao.add(engineer);
         int engineerId = engineer.getId();
-        Site site = new Site("Kwanza Site", "first site init", engineerId);
-        Site anotherSite = new Site("Pile Site", "second site init", engineerId);
+        Site site = new Site("Kwanza Site", "first site init", engineerId, "Nairobi", "-1.292066, 36.821945");
+        Site anotherSite = new Site("Pile Site", "second site init", engineerId,"Nairobi", "-1.292066, 36.821945");
         siteDao.add(site);
         siteDao.add(anotherSite);
         engineerDao.deleteAllSitesByEngineer(engineerId);

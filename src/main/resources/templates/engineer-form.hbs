@@ -3,7 +3,7 @@
     {{#if editEngineer}}
         <div class="form-div">
             <h1 class="form-title">Edit Engineer</h1>
-            <form action="/employees/{{engineer.id}}" method="post" class="form row">
+            <form action="/engineers/{{engineer.id}}" method="post" class="form row">
                 <div class="col-md-4">
                     <div class="mb-3 input-div">
                         <label for="first_name" class="form-label">Edit First name</label>
@@ -40,6 +40,7 @@
         <div class="form-div">
             <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin: auto;">
                 <i class="bi bi-check-circle-fill"></i><strong>  Success!</strong> {{updated}}.<br>
+                <a href="/all-engineers">  Back to Engineers  <i class="bi bi-arrow-left-circle-fill"></i></a>  |
                 <a href="/">  Go to Home  <i class="bi bi-house-fill"></i></a>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -55,7 +56,7 @@
             {{#if success}}
                 <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin: auto;">
                     <i class="bi bi-check-circle-fill"></i><strong>  Success!</strong> {{success}}.<br>
-                    <a href="/sites/new">  Create new Site  <i class="bi bi-people-fill"></i></a>
+                    <a href="/all-engineers">  Back to Engineers  <i class="bi bi-arrow-left-circle-fill"></i></a>  |
                     <a href="/">  Go to Home <i class="bi bi-house-fill"></i></a>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>

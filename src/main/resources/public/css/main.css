@@ -90,7 +90,7 @@ input::placeholder{
     width: 40%;;
 }
 
-.table-div{
+.table-div, .sites-box{
     overflow-y: auto;
 }
 
@@ -105,10 +105,10 @@ input::placeholder{
 
 .form-div-site{
     margin: auto;
-    width: 35%;
+    /*width: 35%;*/
     background-color: #ffffff;
     padding: 10px;
-    border: 1px solid #bdbdbd;
+    border: 1px solid green;
     border-radius: 10px;
 }
 
@@ -127,6 +127,11 @@ input::placeholder{
 .form{
     margin-left: 20px;
     margin-right: 20px;
+}
+
+.details-label{
+    color: #bdbdbd;
+    font-size: 12px;
 }
 
 .footer {
