@@ -65,7 +65,7 @@ class SiteDaoImplTest {
     void weCanGetAllSites() throws Exception{
         Site site = setNewSite();
         siteDao.add(site);
-        Site anotherSite = new Site("Pili Site", "Second site init", 2);
+        Site anotherSite = new Site("Pili Site", "Second site init", 2, "Nairobi", "-1.292066, 36.821945");
         siteDao.add(anotherSite);
         List<Site> allSites = siteDao.getAll();
         assertEquals(2,allSites.size());
@@ -84,7 +84,7 @@ class SiteDaoImplTest {
         Site site = setNewSite();
         siteDao.add(site);
         int siteId = site.getId();
-        siteDao.update(siteId, "Pili Site", "second site init", 1);
+        siteDao.update(siteId, "Pili Site", "second site init", 1, "Nairobi", "-1.292066, 36.821945");
         Site updatedSite = siteDao.findById(siteId);
         assertNotEquals(updatedSite, site);
     }
@@ -124,7 +124,7 @@ class SiteDaoImplTest {
         Site site = setNewSite();
         siteDao.add(site);
         int siteId = site.getId();
-        siteDao.update(siteId, "Pili Site", "second site init", 1);
+        siteDao.update(siteId, "Pili Site", "second site init", 1,"Nairobi", "-1.292066, 36.821945");
         Timestamp rightNow = new Timestamp(new Date().getTime());
         Timestamp siteUpdateDate = siteDao.findById(site.getId()).getUpdated();
         assertEquals(dateFormat.format(siteUpdateDate), dateFormat.format(rightNow));
@@ -134,14 +134,14 @@ class SiteDaoImplTest {
     public void siteSearchWorksCorrectly() throws Exception{
         Site site = setNewSite();
         siteDao.add(site);
-        Site anotherSite = new Site("Pili Site", "Second site init", 2);
+        Site anotherSite = new Site("Pili Site", "Second site init", 2, "Nairobi", "-1.292066, 36.821945");
         siteDao.add(anotherSite);
         List <Site> foundSites = siteDao.search("site");
         assertEquals(2, foundSites.size());
     }
 
     // Support methods
-    public Site setNewSite() { return new Site("Kwanza Site", "First site init", 1);}
+    public Site setNewSite() { return new Site("Kwanza Site", "First site init", 1, "Nairobi", "-1.292066, 36.821945");}
 
     public void clearSitesDB() {
         String connectionString = "jdbc:postgresql://localhost:5432/site_maintenance_test"; // connect to postgres test database

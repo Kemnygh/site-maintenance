@@ -8,14 +8,18 @@ public class Site {
     private String name;
     private String description;
     private int engineer_id;
+    private String location;
+    private String location_id;
     private Timestamp created;
     private Timestamp updated;
     private String deleted;
 
-    public Site(String name, String description, int engineerId){
+    public Site(String name, String description, int engineerId, String location, String locationId){
         this.name = name;
         this.description = description;
         this.engineer_id = engineerId;
+        this.location = location;
+        this.location_id = locationId;
     }
 
     @Override
@@ -23,12 +27,12 @@ public class Site {
         if (this == o) return true;
         if (!(o instanceof Site)) return false;
         Site site = (Site) o;
-        return getId() == site.getId() && engineer_id == site.engineer_id && getName().equals(site.getName()) && getDescription().equals(site.getDescription()) && getCreated().equals(site.getCreated()) && Objects.equals(getUpdated(), site.getUpdated()) && getDeleted().equals(site.getDeleted());
+        return getId() == site.getId() && engineer_id == site.engineer_id && getName().equals(site.getName()) && getDescription().equals(site.getDescription()) && getLocation().equals(site.getLocation()) && getLocation_id().equals(site.getLocation_id()) && getCreated().equals(site.getCreated()) && Objects.equals(getUpdated(), site.getUpdated()) && getDeleted().equals(site.getDeleted());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getDescription(), engineer_id, getCreated(), getUpdated(), getDeleted());
+        return Objects.hash(getId(), getName(), getDescription(), engineer_id, getLocation(), getLocation_id(), getCreated(), getUpdated(), getDeleted());
     }
 
     public void setId(int id) {
@@ -49,6 +53,14 @@ public class Site {
 
     public int getEngineerId() {
         return engineer_id;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getLocation_id() {
+        return location_id;
     }
 
     public Timestamp getCreated() {

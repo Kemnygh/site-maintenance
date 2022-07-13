@@ -101,8 +101,10 @@ public class App {
             model.put("engineers", allEngineers);
             String name = req.queryParams("name");
             String description = req.queryParams("description");
+            String location = req.queryParams("location");
+            String locationId = req.queryParams("location_id");
             int engineerId = Integer.parseInt(req.queryParams("engineer_id"));
-            Site newSite = new Site(name, description, engineerId);
+            Site newSite = new Site(name, description, engineerId, location, locationId);
             for(Site site : allSites){
                 if(site.getName().equals(name) ){
                     model.put("errors", errMsg);
@@ -151,7 +153,9 @@ public class App {
             String name = req.queryParams("name");
             String description = req.queryParams("description");
             int engineerId = Integer.parseInt(req.queryParams("engineer_id"));
-            siteDao.update(siteToEditId, name, description, engineerId );
+            String location = req.queryParams("location");
+            String locationId = req.queryParams("location_id");
+            siteDao.update(siteToEditId, name, description, engineerId,location, locationId);
             model.put("updated", "Site updated successfully");
             return new ModelAndView(model, "site-form.hbs");
         }, new HandlebarsTemplateEngine());

@@ -18,7 +18,7 @@ public class SiteDaoImpl implements SiteDao {
 
     @Override
     public void add(Site site) {
-        String sql = "INSERT INTO sites (name, description, engineer_id, created) VALUES (:name, :description, :engineerId, now())"; //raw sql
+        String sql = "INSERT INTO sites (name, description, engineer_id, created) VALUES (:name, :description, :engineerId, :location, :locationId, now())"; //raw sql
         try(Connection con = sql2o.open()){ //try to open a connection
             int id = (int) con.createQuery(sql, true) //make a new variable
                     .bind(site) //map argument onto the query, so we can use information from it
@@ -53,14 +53,16 @@ public class SiteDaoImpl implements SiteDao {
     }
 
     @Override
-    public void update(int id, String name, String description, int engineerId) {
-        String sql = "UPDATE sites SET (name, description, engineer_id, updated) = (:name, :description, :engineerId, now()) WHERE id=:id";
+    public void update(int id, String name, String description, int engineerId, String location, String locationId) {
+        String sql = "UPDATE sites SET (name, description, engineer_id, location, location_id, updated) = (:name, :description, :engineerId, :location, :locationId, now()) WHERE id=:id";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
                     .addParameter("id", id)
                     .addParameter("name", name)
                     .addParameter("description", description)
                     .addParameter("engineerId", engineerId)
+                    .addParameter("location", location)
+                    .addParameter("location_id", locationId)
                     .executeUpdate();
         }catch (Sql2oException ex) {
             System.out.println(ex);
