@@ -1,0 +1,68 @@
+{{#partial "content"}}
+    <hr>
+    <div class="row">
+        <div class="col-md-6"><h3 class="index-title">{{site.name}} Details </h3></div>
+        <div class="col-md-6" ><a href="/" style="float: right">  Back to Sites  <i class="bi bi-arrow-left-circle-fill"></i></a></div>
+    </div>
+    <div class="form-div-site row">
+        <div class="col-md-4">
+            <div class="mb-3 input-div">
+                <label for="name" class="form-label details-label">Site Name</label>
+                <p class=" border-bottom input-field" id="name" >{{site.name}}</p>
+            </div>
+            <div class="mb-3 input-div">
+                <label for="location" class="form-label details-label">Site Engineer</label>
+                <p class="border-bottom input-field" id="name" >{{engineer.first_name}} {{engineer.last_name}}</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="mb-3 input-div">
+                <label for="description" class="form-label details-label">Site description</label>
+                <p class="border-bottom input-field" id="name" >{{site.description}}</p>
+            </div>
+            <div class="row">
+                <div class="mb-3 input-div col">
+                    <label for="description" class="form-label details-label">Site location</label>
+                    <p class="border-bottom input-field" id="name" >{{site.location}}</p>
+                </div>
+                <div class="mb-3 input-div col">
+                    <label for="description" class="form-label details-label">Coordinates</label>
+                    <p class="border-bottom input-field" id="name" >{{site.location_id}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="mb-3 input-div">
+                <label for="location" class="form-label details-label">Date Created</label>
+                <p class="border-bottom input-field" id="name" >{{site.created}}</p>
+            </div>
+            <div class="mb-3 input-div">
+                <label for="location_id" class="form-label details-label">Date Updated</label>
+                <p class="border-bottom input-field" id="name" >{{site.updated}}</p>
+            </div>
+        </div>
+
+    </div>
+    <!-- Delete Employee modal -->
+    <div class="modal fade" id="staticDeleteEmployee" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Delete Employee</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <i class="bi bi-shield-fill-exclamation text-danger"></i>
+                    Confirm you are about to delete the Employee!!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='/employees/{{employee.id}}/delete';">Delete</button>
+                    <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{{/partial}}
+
+{{> layout.hbs}}
