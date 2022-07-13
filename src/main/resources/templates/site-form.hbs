@@ -10,7 +10,7 @@
                 </div>
                 <div class="mb-3 input-div">
                     <label for="description" class="form-label">Site description</label>
-                    <input class="form-control border-bottom input-field" id="description" name="description" type="text"  value="{{site.description}}" required>
+                    <textarea class="form-control border-bottom input-field" id="description" name="description" rows="3" required>{{site.description}}</textarea>
                 </div>
                 <div class="mb-3 input-div">
                     <label for="engineer_id" class="form-label">Change Engineer</label>
@@ -50,7 +50,7 @@
                 </div>
             {{/if}}
             <h3 class="text-center form-title">Add Site</h3>
-            <form action="/employees" method="post" class="form">
+            <form action="/sites" method="post" class="form">
                 {{#if engineers}}
                     <div class="mb-3 input-div">
                         <label for="name" class="form-label">Site name</label>
@@ -58,11 +58,11 @@
                     </div>
                     <div class="mb-3 input-div">
                         <label for="description" class="form-label">Site description</label>
-                        <input class="form-control border-bottom input-field" id="description" name="description" type="text"  value="{{site.description}}" required>
+                        <textarea class="form-control border-bottom input-field" id="description" name="description" rows="3" required>{{site.description}}</textarea>
                     </div>
                     <div class="mb-3 input-div">
-                        <label for="position_id" class="form-label">Select Engineer</label>
-                        <select id="position_id" name="position_id" class="form-select text-info">
+                        <label for="engineer_id" class="form-label">Select Engineer</label>
+                        <select id="engineer_id" name="engineer_id" class="form-select text-info">
                             {{#each engineers}}
                                 <option value="{{id}}">{{first_name}} {{last_name}}</option>
                             {{/each}}

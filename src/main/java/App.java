@@ -8,6 +8,7 @@ import org.sql2o.Sql2o;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 
@@ -30,14 +31,7 @@ public class App {
         Sql2o sql2o = new Sql2o(connectionString, "postgres", "root");
         EngineerDaoImpl engineerDao = new EngineerDaoImpl(sql2o);
         SiteDaoImpl siteDao = new SiteDaoImpl(sql2o);
-        Gson gson = new Gson();
 
-        get("/all-sites", "application/json", (req, res) ->{
-            List<Site> sites = siteDao.getAll();
-            res.status(200);
-            res.type("application/json");
-            return gson.toJson(sites, Site.class);
-        });
 
         // get: show all engineers
         get("/all-engineers", (req, res) -> {
@@ -51,9 +45,18 @@ public class App {
         // get: show all sites
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Engineer> engineers = engineerDao.getAll();
             List<Site> sites = siteDao.getAll();
             model.put("sites", sites);
+            ArrayList<String> dates = new ArrayList<String>();
+            String test = "";
+                for(Site site : sites){assert false;
+                    test = site.getCreated().toString().substring(0,16);
+
+                    model.put("siteCreated", test);
+                    return new ModelAndView(model, "index.hbs");
+                }
+
+
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -113,12 +116,15 @@ public class App {
             return new ModelAndView(model, "site-form.hbs");
         }, new HandlebarsTemplateEngine());
 
-        // get: show a single site
+
+
+        // get: show a single site details
         get("/sites/:id/:engineer_id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
+            System.out.println(req.params());
             int idOfSiteToFind = Integer.parseInt(req.params("id"));
-            int idOfSiteEngineer = Integer.parseInt(req.params("engineer_id"));
             Site foundSite = siteDao.findById(idOfSiteToFind);
+            int idOfSiteEngineer = foundSite.getEngineerId();
             Engineer siteEngineer = engineerDao.findById(idOfSiteEngineer);
             model.put("site", foundSite);
             model.put("engineer", siteEngineer);
@@ -127,15 +133,16 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //get: show form to update site details
-        get("/sites/:id/edit", (req, res) -> {
+        get("/site/:id/edit", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Engineer> allEngineers = engineerDao.getAll();
-            model.put("engineers", allEngineers);
+            model.put("editSite", true);
             Site site = siteDao.findById(Integer.parseInt(req.params("id")));
             model.put("site", site);
-            model.put("editSite", true);
+            model.put("engineers", engineerDao.getAll()); //refresh list of links for navbar
             return new ModelAndView(model, "site-form.hbs");
         }, new HandlebarsTemplateEngine());
+
+
 
         //post: process form to update site
         post("/sites/:id", (req, res) -> {

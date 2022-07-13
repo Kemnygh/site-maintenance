@@ -41,7 +41,16 @@ body{
 
 .card-text-layout{
     letter-spacing: 3px;
-    font-family: Baloo;
+    font-family: Baloo, serif;
+}
+
+.card-date{
+    font-size: 12px;
+}
+
+.card-header-index{
+    font-weight: bold;
+    font-size: 22px;
 }
 
 .img-fluid{
@@ -79,6 +88,10 @@ input::placeholder{
     margin-left: auto;
     margin-right: auto;
     width: 40%;;
+}
+
+.table-div{
+    overflow-y: auto;
 }
 
 .form-div{
