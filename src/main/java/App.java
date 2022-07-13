@@ -122,7 +122,6 @@ public class App {
         // get: show a single site details
         get("/sites/:id/:engineer_id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            System.out.println(req.params());
             int idOfSiteToFind = Integer.parseInt(req.params("id"));
             Site foundSite = siteDao.findById(idOfSiteToFind);
             int idOfSiteEngineer = foundSite.getEngineerId();
@@ -235,22 +234,30 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
-        //post: search for engineers
-        post("/search/engineers", (req, res) -> {
+        //get: search for engineers and sites
+        get("/search/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            String engineer = req.queryParams("engineer");
-            List<Engineer> searchedEngineers = engineerDao.search(engineer);
-            model.put("searched", searchedEngineers);
-            return new ModelAndView(model, "search-results.hbs");
+            model.put("editEngineer", true);
+            String searchString = req.queryParams("search");
+            System.out.println(searchString);
+            if(searchString.isBlank()){
+                model.put("engineers", null);
+                model.put("sites", null);
+                model.put("no_engineers", null);
+                model.put("no_sites", null);
+                model.put("message", "The search was blank please enter one or more letters to search!");
+            }else {
+                List<Engineer> engineers = engineerDao.search(searchString);
+                List<Site> sites = siteDao.search(searchString);
+                int numberOfEngineers = engineers.size();
+                int numberOfSites = sites.size();
+                model.put("engineers", engineers);
+                model.put("sites", sites);
+                model.put("no_engineers", numberOfEngineers);
+                model.put("no_sites", numberOfSites);
+            }
+            return new ModelAndView(model, "search-details.hbs");
         }, new HandlebarsTemplateEngine());
 
-        //post: search for sites
-        post("/search/sites", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            String site = req.queryParams("site");
-            List<Site> searchedSites = siteDao.search(site);
-            model.put("searched", searchedSites);
-            return new ModelAndView(model, "search-results.hbs");
-        }, new HandlebarsTemplateEngine());
     }
 }
