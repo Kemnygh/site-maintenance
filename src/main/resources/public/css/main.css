@@ -6,7 +6,6 @@ html, body{
 
 body{
     height: 100vh;
-
 }
 
 * {
@@ -49,7 +48,7 @@ body{
 }
 
 .card-header-index{
-    font-weight: bold;
+    /*font-weight: bolder;*/
     font-size: 22px;
 }
 
@@ -64,6 +63,7 @@ body{
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
+
 .add-buttons{
     background-color: #212121;
     height: 200px;
@@ -79,7 +79,6 @@ body{
 }
 
 input::placeholder{
-
     font-size: 15px;
 }
 

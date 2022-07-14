@@ -1,13 +1,13 @@
 {{#partial "content"}}
     {{#if sites}}
         <br>
-        <h3 class="index-title"> Current Sites</h3>
+        <h3 class="index-title"> Current Sites  <span style="color: grey; font-size: 15px;">(Select site name to see site details)</span></h3>
         <hr>
         <div class="row sites-box">
         {{#each sites}}
             <div class="card col-md-3 mb-3 ms-2 me-3" style="max-width: 19rem; padding: 0">
-                <div class="card-header card-header-index">
-                    <a href="/sites/{{id}}/{{engineerId}}">{{name}}</a>
+                <div class="card-header card-header-index bg-success">
+                    <a class="text-white" href="/sites/{{id}}/{{engineerId}}">{{name}}</a>
                 </div>
                 <div class="card-body">
                     <p class="card-text">{{description}}</p>
