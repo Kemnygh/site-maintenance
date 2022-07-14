@@ -1,5 +1,3 @@
-import com.google.gson.Gson;
-import db.config.DbConfig;
 import db.dao.EngineerDaoImpl;
 import db.dao.SiteDaoImpl;
 import models.Engineer;
@@ -8,7 +6,7 @@ import org.sql2o.Sql2o;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
-import java.sql.Timestamp;
+
 import java.util.*;
 
 
@@ -240,7 +238,7 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             model.put("editEngineer", true);
             String searchString = req.queryParams("search");
-            if(searchString.isBlank()){
+            if(searchString == null || searchString.trim().isEmpty()){
                 model.put("message", "The search was blank please enter one or more letters to search!");
             }else {
                 List<Engineer> engineers = engineerDao.search(searchString);

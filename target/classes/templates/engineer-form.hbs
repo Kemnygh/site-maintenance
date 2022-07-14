@@ -1,0 +1,101 @@
+{{#partial "content"}}
+    <hr>
+    {{#if editEngineer}}
+        <div class="form-div">
+            <h1 class="form-title">Edit Engineer</h1>
+            <form action="/engineers/{{engineer.id}}" method="post" class="form row">
+                <div class="col-md-4">
+                    <div class="mb-3 input-div">
+                        <label for="first_name" class="form-label">Edit First name</label>
+                        <input class="form-control border-bottom input-field" id="first_name" name="first_name" type="text" value="{{engineer.first_name}}" required>
+                    </div>
+                    <div class="mb-3 input-div">
+                        <label for="last_name" class="form-label">Edit Last name</label>
+                        <input class="form-control border-bottom input-field" id="last_name" name="last_name" type="text"  value="{{engineer.last_name}}" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3 input-div">
+                        <label for="eng_no" class="form-label">Edit Engineer ID</label>
+                        <input class="form-control border-bottom input-field" id="eng_no" name="eng_no" type="text" value="{{engineer.eng_no}}" required>
+                    </div>
+                    <div class="mb-3 input-div">
+                        <label for="phone_no" class="form-label">Edit Phone Number</label>
+                        <input class="form-control border-bottom input-field" id="phone_no" name="phone_no" type="text" value="{{engineer.phone_no}}" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3 input-div mb-5">
+                        <label for="email" class="form-label">Edit Email</label>
+                        <input class="form-control border-bottom input-field" id="email" name="email" type="email" value="{{engineer.email}}" required>
+                    </div>
+                    <div class="ms-auto">
+                        <button type="submit" class="btn btn-success btn-sm mb-3">Submit</button>
+                        <button type="button" class="btn btn-danger btn-sm mb-3" onclick="window.location.href='/all-engineers';">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    {{else if updated}}
+        <div class="form-div">
+            <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin: auto;">
+                <i class="bi bi-check-circle-fill"></i><strong>  Success!</strong> {{updated}}.<br>
+                <a href="/all-engineers">  Back to Engineers  <i class="bi bi-arrow-left-circle-fill"></i></a>  |
+                <a href="/">  Go to Home  <i class="bi bi-house-fill"></i></a>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    {{else}}
+        <div class="form-div">
+            {{#if errors}}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill"></i><strong>  Error!</strong> {{errors}}. Confirm that the Staff ID, phone number and/or email address are unique.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {{/if}}
+            {{#if success}}
+                <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin: auto;">
+                    <i class="bi bi-check-circle-fill"></i><strong>  Success!</strong> {{success}}.<br>
+                    <a href="/all-engineers">  Back to Engineers  <i class="bi bi-arrow-left-circle-fill"></i></a>  |
+                    <a href="/">  Go to Home <i class="bi bi-house-fill"></i></a>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {{/if}}
+            <h3 class="text-center form-title">Add Engineer</h3>
+            <form action="/engineers" method="post" class="form row">
+                <div class="col-md-4">
+                    <div class="mb-3 input-div">
+                        <label for="first_name" class="form-label">First name</label>
+                        <input class="form-control border-bottom input-field" id="first_name" name="first_name" type="text" placeholder="Enter first name" required>
+                    </div>
+                    <div class="mb-3 input-div">
+                        <label for="last_name" class="form-label">Last name</label>
+                        <input class="form-control border-bottom input-field" id="last_name" name="last_name" type="text" placeholder="Enter last name" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3 input-div">
+                        <label for="eng_no" class="form-label">Engineer ID</label>
+                        <input class="form-control border-bottom input-field" id="eng_no" name="eng_no" type="text" placeholder="Enter Engineer ID" required>
+                    </div>
+                    <div class="mb-3 input-div">
+                        <label for="phone_no" class="form-label">Phone Number</label>
+                        <input class="form-control border-bottom input-field" id="phone_no" name="phone_no" type="text" placeholder="Enter Mobile Number" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-5 input-div">
+                        <label for="email" class="form-label">Email</label>
+                        <input class="form-control border-bottom input-field" id="email" name="email" type="email" placeholder="Enter email" required>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-success btn-sm mb-3">Submit</button>
+                        <button type="button" class="btn btn-danger btn-sm mb-3" onclick="window.location.href='/';">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    {{/if}}
+{{/partial}}
+
+{{> layout.hbs}}

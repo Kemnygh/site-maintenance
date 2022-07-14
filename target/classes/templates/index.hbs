@@ -1,0 +1,30 @@
+{{#partial "content"}}
+    {{#if sites}}
+        <br>
+        <h3 class="index-title"> Current Sites  <span style="color: grey; font-size: 15px;">(Select site name to see site details)</span></h3>
+        <hr>
+        <div class="row sites-box">
+        {{#each sites}}
+            <div class="card col-md-3 mb-3 ms-2 me-3" style="max-width: 19rem; padding: 0">
+                <div class="card-header card-header-index bg-success">
+                    <a class="text-white" href="/sites/{{id}}/{{engineerId}}">{{name}}</a>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{description}}</p>
+                </div>
+                <div class="card-footer text-muted">
+                    <span class="card-date" id="dateCreated">Created: {{created}}</span>
+                    <a href="/site/{{id}}/edit" class="card-link" style="float: right;">Edit <i class="bi bi-pencil-square"></i></a>
+                </div>
+            </div>
+        {{/each}}
+        </div>
+    {{else}}
+        <div class="mt-3">
+            <p class="text-center text-danger mb-1">No Current Entries Available!</p>
+            <p class="text-center text-muted ">Add Engineers and Sites from the tabs above.</p>
+        </div>
+    {{/if}}
+{{/partial}}
+
+{{> layout.hbs}}

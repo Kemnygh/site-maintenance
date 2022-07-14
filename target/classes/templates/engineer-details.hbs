@@ -1,0 +1,119 @@
+{{#partial "content"}}
+    <hr>
+    <div class="row">
+        <div class="col-md-6"><h3 class="index-title">Engineer {{engineer.first_name}}'s Details </h3></div>
+        <div class="col-md-6" ><a href="/all-engineers" style="float: right">  Back to Engineers  <i class="bi bi-arrow-left-circle-fill"></i></a></div>
+    </div>
+    <div class="form-div-site row">
+        <div class="col-md-4">
+            <div class="mb-3 input-div">
+                <label for="name" class="form-label details-label">Engineer Name</label>
+                <p class=" border-bottom input-field" id="name" >{{engineer.first_name}} {{engineer.last_name}}</p>
+            </div>
+            <div class="mb-3 input-div">
+                <label for="description" class="form-label details-label">Engineer ID</label>
+                <p class="border-bottom input-field" id="name" >{{engineer.eng_no}}</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="mb-3 input-div">
+                <label for="location" class="form-label details-label">Engineer Phone</label>
+                <p class="border-bottom input-field" id="name" >{{engineer.phone_no}}</p>
+            </div>
+            <div class="mb-3 input-div">
+                <label for="location_id" class="form-label details-label">Engineer Email</label>
+                <p class="border-bottom input-field" id="name" >{{engineer.email}}</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="mb-3 input-div">
+                <label for="location" class="form-label details-label">Date Created</label>
+                <p class="border-bottom input-field" id="name" >{{engineer.created}}</p>
+            </div>
+            <div class="mb-3 input-div">
+                <label for="location_id" class="form-label details-label">Date Updated</label>
+                <p class="border-bottom input-field" id="name" >{{engineer.updated}}</p>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="table-div">
+        <p>Sites Managed by {{engineer.first_name}}:: <span style="color: grey;">Select site to see more details</span></p>
+        <table class="table table-hover table-responsive table-sm">
+            <thead class="table-warning text-center">
+                <tr>
+                    <th scope="col">Site Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Coordinates</th>
+                    <th scope="col">Date Created</th>
+                    <th scope="col">Last Updated</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider bg-light">
+            {{#each sites}}
+                <tr class="text-center">
+                    <th scope="row"><a href="/sites/{{id}}/{{engineerId}}">{{name}}</a></th>
+                    <td>{{description}}</td>
+                    <td>{{location}}</td>
+                    <td>{{location_id}}</td>
+                    <td>{{created}}</td>
+                    <td>{{updated}}</td>
+                    <td><a href="/site/{{id}}/edit"><i class="bi bi-pencil-square"></i></a></td>
+                    <td><a href="" data-bs-toggle="modal" data-bs-target="#staticDeleteSite"><i class="bi bi-trash3"></i></a></td>
+                    <!-- Delete site modal -->
+                    <div class="modal fade" id="staticDeleteSite" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Delete Site</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <i class="bi bi-shield-fill-exclamation text-danger"></i>
+                                    Confirm you are about to delete this Site!!
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='/sites/{{id}}/delete';">Delete</button>
+                                    <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+            {{/each}}
+                <tr><th colspan="8"></th></tr>
+                <tr>
+                    <th scope="row" colspan="8"><a href="/sites/new">Create New Site</a>  |
+                        <a href="" data-bs-toggle="modal" data-bs-target="#staticDeleteAllSite">Delete All Sites</a>  |
+                        <a href="/" >Home</a>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Delete all site modal -->
+    <div class="modal fade" id="staticDeleteAllSite" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Delete All Site</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <i class="bi bi-shield-fill-exclamation text-danger"></i>
+                    Confirm you are about to delete all Sites for this engineer!!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='/engineers/{{engineer.id}}/delete/sites';">Delete</button>
+                    <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/partial}}
+
+{{> layout.hbs}}

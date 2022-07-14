@@ -1,0 +1,112 @@
+{{#partial "content"}}
+    <hr>
+    {{#if editSite}}
+        <div class="form-div">
+            <h1 class="form-title">Edit this Site</h1>
+            <form action="/sites/{{site.id}}" method="post" class="form row">
+                <div class="col-md-4">
+                    <div class="mb-3 input-div">
+                        <label for="name" class="form-label">Site Name</label>
+                        <input class="form-control border-bottom input-field" id="name" name="name" type="text" value="{{site.name}}" required>
+                    </div>
+                    <div class="mb-3 input-div">
+                        <label for="description" class="form-label">Site Description</label>
+                        <textarea class="form-control border-bottom input-field" id="description" name="description" rows="3" required>{{site.description}}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3 input-div">
+                        <label for="location" class="form-label">Site Location</label>
+                        <input class="form-control border-bottom input-field" id="location" name="location" type="text" value="{{site.location}}" required>
+                    </div>
+                    <div class="mb-3 input-div">
+                        <label for="location_id" class="form-label">Site Coordinates</label>
+                        <input class="form-control border-bottom input-field" id="location_id" name="location_id" type="text" value="{{site.location_id}}" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3 input-div">
+                        <label for="engineer_id" class="form-label">Change Engineer</label>
+                        <select id="engineer_id" name="engineer_id" class="form-select text-info">
+                            {{#each engineers}}
+                                <option value="{{id}}">{{first_name}} {{last_name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="ms-auto">
+                        <button type="submit" class="btn btn-success btn-sm mb-3">Submit</button>
+                        <button type="button" class="btn btn-danger btn-sm mb-3" onclick="window.location.href='/';">Cancel</button>
+                    </div>
+                    <p class="">Don't see the correct <span style="font-weight: bold">Engineer?</span><a href="/engineers/new"> + Add Engineer</a></p>
+                </div>
+            </form>
+        </div>
+    {{else if updated}}
+        <div class="form-div">
+            <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin: auto;">
+                <i class="bi bi-check-circle-fill"></i><strong>  Success!</strong> {{updated}}.<br>
+                <a href="/">  Go to Home  <i class="bi bi-house-fill"></i></a>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    {{else}}
+        <div class="form-div">
+            {{#if errors}}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill"></i><strong>  Error!</strong> {{errors}}. Confirm site name is not already existing.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {{/if}}
+            {{#if success}}
+                <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin: auto;">
+                    <i class="bi bi-check-circle-fill"></i><strong>  Success!</strong> {{success}}.<a href="/">  Go to Home <i class="bi bi-house-fill"></i></a>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {{/if}}
+            <h3 class="text-center form-title">Add Site</h3>
+            <form action="/sites" method="post" class="form row">
+                {{#if engineers}}
+                <div class="col-md-4">
+                    <div class="mb-3 input-div">
+                        <label for="name" class="form-label">Site name</label>
+                        <input class="form-control border-bottom input-field" id="name" name="name" type="text" value="{{site.name}}" placeholder="Enter name" required>
+                    </div>
+                    <div class="mb-3 input-div">
+                        <label for="description" class="form-label">Site description</label>
+                        <textarea class="form-control border-bottom input-field" id="description" name="description" rows="3" placeholder="Site details" required>{{site.description}}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3 input-div">
+                        <label for="location" class="form-label">Site Location</label>
+                        <input class="form-control border-bottom input-field" id="location" name="location" type="text" value="{{site.location}}" placeholder="City or Town" required>
+                    </div>
+                    <div class="mb-3 input-div">
+                        <label for="location_id" class="form-label">Site Coordinates</label>
+                        <input class="form-control border-bottom input-field" id="location_id" name="location_id" type="text" value="{{site.location_id}}" placeholder="e.g. -1.292066, 36.821945" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3 input-div">
+                        <label for="engineer_id" class="form-label">Select Engineer</label>
+                        <select id="engineer_id" name="engineer_id" class="form-select text-info">
+                            {{#each engineers}}
+                                <option value="{{id}}">{{first_name}} {{last_name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-success btn-sm mb-3">Submit</button>
+                        <button type="button" class="btn btn-danger btn-sm mb-3" onclick="window.location.href='/';">Cancel</button>
+                    </div>
+                    <p class="">Don't see the correct <span style="font-weight: bold">Engineer?</span><a href="/engineers/new"> + Add Engineer</a>
+                {{else}}
+                    <p class=""> Add an Engineer before adding a Site <a href="/engineers/new">+ Add Engineer</a> </p>
+                {{/if}}
+                </div>
+            </form>
+        </div>
+    {{/if}}
+{{/partial}}
+
+{{> layout.hbs}}
