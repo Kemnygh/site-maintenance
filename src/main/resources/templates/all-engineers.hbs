@@ -4,16 +4,16 @@
         <div class="table-div">
             <p><span style="color: grey;">Select engineer ID to see more details</span></p>
             <table class="table table-hover table-responsive table-sm">
-                <thead class="table-danger text-center">
-                <tr>
-                    <th scope="col">Engineer ID</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Phone Number</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Delete</th>
-                </tr>
+                <thead class="table-success text-center">
+                    <tr>
+                        <th scope="col">Engineer ID</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
                 </thead>
                 <tbody class="table-group-divider bg-light">
                 {{#each engineers }}
@@ -46,9 +46,9 @@
                         </div>
                     </tr>
                 {{/each}}
-                <tr>
-                    <td colspan="8">Delete All Engineers  <a href="" data-bs-toggle="modal" data-bs-target="#staticDeleteAllEng"><i class="bi bi-trash-fill"></i></a></td>
-                </tr>
+                    <tr>
+                        <td colspan="8">Delete All Engineers  <a href="" data-bs-toggle="modal" data-bs-target="#staticDeleteAllEng"><i class="bi bi-trash-fill"></i></a></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -74,7 +74,7 @@
         </div>
 
     {{else}}
-        <p class="text-center">No Entries!</p>
+        <p class="text-center text-danger mt-3">No Entries!</p>
         <p class="text-center text-muted">Create Engineer from the tabs above.</p>
     {{/if}}
 {{/partial}}

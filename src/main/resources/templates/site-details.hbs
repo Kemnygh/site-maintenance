@@ -2,7 +2,10 @@
     <hr>
     <div class="row">
         <div class="col-md-6"><h3 class="index-title">{{site.name}} Details </h3></div>
-        <div class="col-md-6" ><a href="/" style="float: right">  Back to Sites  <i class="bi bi-arrow-left-circle-fill"></i></a></div>
+        <div class="col-md-6" >
+            <a href="/" style="float: right; margin-left: 10px" data-bs-toggle="modal" data-bs-target="#staticDeleteSite"> Delete Site  <i class="bi bi-x-circle-fill"></i></a>
+            <a href="/" style="float: right">  Back to Sites  <i class="bi bi-arrow-left-circle-fill"></i></a>
+        </div>
     </div>
     <div class="form-div-site row">
         <div class="col-md-4">
@@ -41,22 +44,21 @@
                 <p class="border-bottom input-field" id="name" >{{site.updated}}</p>
             </div>
         </div>
-
     </div>
-    <!-- Delete Employee modal -->
-    <div class="modal fade" id="staticDeleteEmployee" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <!-- Delete Site modal -->
+    <div class="modal fade" id="staticDeleteSite" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Delete Employee</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Delete Site</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <i class="bi bi-shield-fill-exclamation text-danger"></i>
-                    Confirm you are about to delete the Employee!!
+                    Confirm you are about to delete this Site!!
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='/employees/{{employee.id}}/delete';">Delete</button>
+                    <button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='/sites/{{site.id}}/delete';">Delete</button>
                     <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
                 </div>
             </div>

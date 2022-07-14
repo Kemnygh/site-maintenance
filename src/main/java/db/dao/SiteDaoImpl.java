@@ -15,7 +15,6 @@ public class SiteDaoImpl implements SiteDao {
         this.sql2o = sql2o;
     }
 
-
     @Override
     public void add(Site site) {
         String sql = "INSERT INTO sites (name, description, engineer_id, location, location_id, created) VALUES (:name, :description, :engineerId, :location, :location_id, now())"; //raw sql
@@ -62,7 +61,7 @@ public class SiteDaoImpl implements SiteDao {
                     .addParameter("description", description)
                     .addParameter("engineerId", engineerId)
                     .addParameter("location", location)
-                    .addParameter("location_id", locationId)
+                    .addParameter("locationId", locationId)
                     .executeUpdate();
         }catch (Sql2oException ex) {
             System.out.println(ex);

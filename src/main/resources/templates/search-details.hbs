@@ -3,28 +3,28 @@
         <p class="text-center text-danger mt-3"><i class="bi bi-exclamation-triangle-fill"></i> {{message}}</p>
     {{else}}
         <div class="search-div">
-        <hr>
-        <p class="text-muted">Search result for engineers <strong>({{no_engineers}})</strong> records found</p>
+            <hr>
+            <p class="text-muted">Search result for engineers <strong>({{no_engineers}})</strong> records found</p>
 {{#each engineers}}
-        <div>
-            <h5><a href="/engineers/{{id}}">{{first_name}} {{last_name}}</a></h5>
-            <p class="mb-1">Eng Id: {{eng_no}}</p>
-            <p class="text-muted">Date Created: {{created}}</p>
-            <hr>
-        </div>
+            <div>
+                <h5><a href="/engineers/{{id}}">{{first_name}} {{last_name}}</a></h5>
+                <p class="mb-1">Eng Id: {{eng_no}}</p>
+                <p class="text-muted">Date Created: {{created}}</p>
+                <hr>
+            </div>
 {{/each}}
-        <br>
-        <p class="text-muted">Search result for Sites <strong>({{no_sites}})</strong> records found</p>
+            <br>
+            <p class="text-muted">Search result for Sites <strong>({{no_sites}})</strong> records found</p>
 {{#each sites}}
-        <div>
-            <h5><a href="/sites/{{id}}/{{engineerId}}">{{name}}</a></h5>
-            <p class="mb-1">description: {{description}}</p>
-            <p class="mb-1">location: {{location}}</p>
-            <p class="text-muted">Date Created: {{created}}</p>
-            <hr>
-        </div>
+            <div>
+                <h5><a href="/sites/{{id}}/{{engineerId}}">{{name}}</a></h5>
+                <p class="mb-1">description: {{description}}</p>
+                <p class="mb-1">location: {{location}}</p>
+                <p class="text-muted">Date Created: {{created}}</p>
+                <hr>
+            </div>
 {{/each}}
-    </div>
+        </div>
     {{/if}}
 {{/partial}}
 

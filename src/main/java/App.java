@@ -31,7 +31,6 @@ public class App {
         EngineerDaoImpl engineerDao = new EngineerDaoImpl(sql2o);
         SiteDaoImpl siteDao = new SiteDaoImpl(sql2o);
 
-
         // get: show all engineers
         get("/all-engineers", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
@@ -54,8 +53,6 @@ public class App {
                     model.put("siteCreated", test);
                     return new ModelAndView(model, "index.hbs");
                 }
-
-
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -117,8 +114,6 @@ public class App {
             return new ModelAndView(model, "site-form.hbs");
         }, new HandlebarsTemplateEngine());
 
-
-
         // get: show a single site details
         get("/sites/:id/:engineer_id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
@@ -142,8 +137,6 @@ public class App {
             return new ModelAndView(model, "site-form.hbs");
         }, new HandlebarsTemplateEngine());
 
-
-
         //post: process form to update site
         post("/sites/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
@@ -158,7 +151,7 @@ public class App {
             return new ModelAndView(model, "site-form.hbs");
         }, new HandlebarsTemplateEngine());
 
-        //post: process new employee form
+        //post: process new engineer form
         post("/engineers", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String errMsg = "Engineer already exists";
@@ -219,18 +212,26 @@ public class App {
             return new ModelAndView(model, "engineer-form.hbs");
         }, new HandlebarsTemplateEngine());
 
-        //get: delete all departments, positions and all employees
+        //get: delete engineer
         get("/engineers/:id/delete", (req, res) -> {
             int engineerId = Integer.parseInt(req.params("id"));
             engineerDao.deleteById(engineerId);
-//            engineerDao.deleteAllSitesByEngineer(engineerId);
-            res.redirect("/");
+            res.redirect("/all-engineers");
             return null;
         }, new HandlebarsTemplateEngine());
 
+        //get: delete all sites by engineer
+        get("/engineers/:id/delete/sites", (req, res) -> {
+            int engineerId = Integer.parseInt(req.params("id"));
+            engineerDao.deleteAllSitesByEngineer(engineerId);
+            res.redirect("/engineers/"+engineerId);
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        //get: delete all  engineer
         get("/engineers/delete/all", (req, res) -> {
             engineerDao.clearAllEngineers();
-            res.redirect("/");
+            res.redirect("/all-engineers");
             return null;
         }, new HandlebarsTemplateEngine());
 
@@ -239,12 +240,7 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             model.put("editEngineer", true);
             String searchString = req.queryParams("search");
-            System.out.println(searchString);
             if(searchString.isBlank()){
-                model.put("engineers", null);
-                model.put("sites", null);
-                model.put("no_engineers", null);
-                model.put("no_sites", null);
                 model.put("message", "The search was blank please enter one or more letters to search!");
             }else {
                 List<Engineer> engineers = engineerDao.search(searchString);
