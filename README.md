@@ -15,6 +15,10 @@ the sites and employees.
 * Deploy to a server environment to access the application
 * Git repository link  https://github.com/Kemnygh/site-maintenance.git
 
+## Features
+* Delete function implemented is a soft delete that changes status of a record and does not do a hard delete so records will still be available in the DB.
+* Search function searches both engineers and sites at a go and separates the two while giving you the count of found items.
+
 
 ## Known Bugs
 * Web application will not work properly with devices that have less than 350px screen size.
